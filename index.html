@@ -6,15 +6,10 @@
     <title>Consultoría Técnica y Mentoría en Software | C#, Unity, Algoritmia</title>
     
     <!-- SEO Meta Tags -->
-    <meta name="description" content="Servicios de consultoría técnica, auditoría de código (Code Review) en Unity, y mentoría especializada en C#, Python, algoritmos y estructuras de datos.">
-    <meta name="keywords" content="Consultoria Unity, Code Review C#, Mentoria Programacion, Algoritmos, Estructuras de Datos, Auditoria de Codigo">
+    <meta name="description" content="Servicios de consultoría técnica para programadores y pequeñas empresas. Auditoría de código en Unity, automatización y mentoría en C#, Python y algoritmia.">
+    <meta name="keywords" content="Consultoria Unity, Code Review C#, Mentoria Programacion, Pequeñas Empresas, Algoritmos, Estructuras de Datos">
     <meta name="author" content="Consultoría e Ingeniería de Software">
     <meta name="robots" content="index, follow">
-
-    <!-- Open Graph para redes sociales -->
-    <meta property="og:title" content="Consultoría Técnica & Mentoría en Ingeniería de Software">
-    <meta property="og:description" content="Optimización de arquitectura en Unity, auditoría de código en C# y mentoría en algoritmia para desarrolladores y estudiantes.">
-    <meta property="og:type" content="website">
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -130,7 +125,7 @@
         .hero p {
             font-size: 1.15rem;
             color: var(--text-secondary);
-            max-width: 750px;
+            max-width: 780px;
             margin: 0 auto 2.5rem;
         }
 
@@ -144,6 +139,7 @@
         .btn {
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 0.5rem;
             padding: 0.8rem 1.6rem;
             border-radius: 6px;
@@ -151,11 +147,13 @@
             text-decoration: none;
             transition: all 0.2s ease;
             font-size: 0.95rem;
+            cursor: pointer;
         }
 
         .btn-primary {
             background-color: var(--accent-color);
             color: #0d1117;
+            border: none;
         }
 
         .btn-primary:hover {
@@ -213,6 +211,43 @@
             font-size: 0.95rem;
         }
 
+        /* Sección Nosotros */
+        .about-section {
+            max-width: 1100px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-img-container {
+            text-align: center;
+        }
+
+        .about-img {
+            width: 100%;
+            max-width: 280px;
+            height: 280px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            object-fit: cover;
+            background-color: var(--card-bg);
+        }
+
+        .about-content h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .about-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            line-height: 1.7;
+        }
+
         /* Tech Stack Section */
         .stack-section {
             background-color: var(--card-bg);
@@ -254,41 +289,136 @@
             color: var(--text-primary);
         }
 
-        /* Downloads Section */
-        .downloads {
+        /* Modality Section */
+        .modality-section {
+            max-width: 1100px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Two-Column Layout: Downloads & Pricing */
+        .two-col-container {
+            max-width: 1100px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        .two-col-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .col-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .col-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+            color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 0.8rem;
+        }
+
+        .col-card p.description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Vertical stack for PDF buttons */
+        .btn-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .btn-stack .btn {
+            width: 100%;
+            text-align: center;
+        }
+
+        /* Pricing Itemized Table/List */
+        .price-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 0.8rem;
+            border-bottom: 1px dashed var(--border-color);
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-title {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+
+        .price-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            display: block;
+        }
+
+        .price-tag {
+            font-family: var(--font-mono);
+            color: var(--accent-green);
+            font-weight: 600;
+            font-size: 1.05rem;
+            white-space: nowrap;
+        }
+
+        /* Contact Section */
+        .contact-section {
             max-width: 1100px;
             margin: 5rem auto;
             padding: 0 1.5rem;
             text-align: center;
         }
 
-        .download-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-
-        .download-card {
+        .contact-box {
             background-color: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 2.5rem 2rem;
+            padding: 3rem 2rem;
+            max-width: 700px;
+            margin: 2rem auto 0;
+        }
+
+        .contact-info {
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 1rem;
         }
 
-        .download-card h3 {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
+        .contact-item a {
+            color: var(--accent-color);
+            text-decoration: none;
         }
 
-        .download-card p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+        .contact-item a:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
@@ -300,18 +430,21 @@
             font-size: 0.85rem;
             margin-top: 4rem;
         }
-        .download-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2.5rem 2rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center; /* Añadido para igualar la imagen */
+
+        /* Responsive Layout */
+        @media (max-width: 850px) {
+            .two-col-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-section {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-img-container {
+                margin: 0 auto;
+            }
         }
-        /* Responsive Nav */
+
         @media (max-width: 600px) {
             .nav-links {
                 display: none;
@@ -326,9 +459,11 @@
         <nav>
             <a href="#" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
             <ul class="nav-links">
+                <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#tecnologias">Especialidad</a></li>
-                <li><a href="#descargas">Documentos PDF</a></li>
+                <li><a href="#modalidades">Modalidades</a></li>
+                <li><a href="#documentos">Catálogo y Precios</a></li>
+                <li><a href="#contacto">Contacto</a></li>
             </ul>
         </nav>
     </header>
@@ -337,13 +472,25 @@
     <main>
         <!-- Hero Section -->
         <section class="hero">
-            <span class="hero-badge">Criterio Técnico &amp; Arquitectura</span>
+            <span class="hero-badge">Programadores, Startups &amp; Pequeñas Empresas</span>
             <h1>Consultoría Especializada y Mentoría de Código</h1>
-            <p>Diagnóstico de arquitectura en Unity, revisiones de código en C#, e instrucción universitaria avanzada en algoritmia y estructuras de datos.</p>
+            <p>Servicios de arquitectura en Unity, auditoría en C# y desarrollo en Python diseñados para <strong>programadores independientes, equipos de desarrollo y pequeñas empresas</strong>, complementados con instrucción universitaria en algoritmia.</p>
             
             <div class="cta-group">
-                <a href="#descargas" class="btn btn-primary">Descargar Dossier &amp; Precios</a>
-                <a href="#servicios" class="btn btn-secondary">Ver Servicios</a>
+                <a href="#documentos" class="btn btn-primary">Ver Catálogo &amp; Precios</a>
+                <a href="#contacto" class="btn btn-secondary">Contactar</a>
+            </div>
+        </section>
+
+        <!-- Section: Nosotros -->
+        <section class="about-section" id="nosotros">
+            <div class="about-img-container">
+                <img src="perfil.jpg" alt="Foto de perfil profesional" class="about-img">
+            </div>
+            <div class="about-content">
+                <h2>Sobre Mí</h2>
+                <p>Ingeniero de Software y docente universitario especializado en la arquitectura de videojuegos con Unity, refactorización avanzada en C# y desarrollo de automatizaciones en Python.</p>
+                <p>Mi enfoque combina la rigurosidad teórica de las estructuras de datos con la práctica real del desarrollo de software. Acompaño tanto a <strong>programadores en desarrollo</strong> que buscan acelerar su perfil técnico, como a <strong>pequeñas empresas y estudios independientes</strong> que necesitan optimizar su base de código, mejorar el rendimiento de sus sistemas o estructurar procesos escalables.</p>
             </div>
         </section>
 
@@ -352,25 +499,25 @@
             <article class="card">
                 <div class="card-icon">[01]</div>
                 <h2>Code Review &amp; Auditoría</h2>
-                <p>Análisis exhaustivo de proyectos en Unity y C#. Detección de cuellos de botella de rendimiento, refactorización lógica y evaluación de arquitectura (Behavior Trees, optimización 2D).</p>
+                <p>Orientado a programadores e indie devs. Análisis profundo de proyectos en Unity/C#, detección de bottlenecks, optimización 2D/3D y buenas prácticas de arquitectura (Behavior Trees, Clean Code).</p>
             </article>
 
             <article class="card">
                 <div class="card-icon">[02]</div>
                 <h2>Mentoría 1 a 1</h2>
-                <p>Acompañamiento personalizado y técnico enfocado en Fundamentos de Ingeniería, Algoritmos Avanzados, Estructuras de Datos y Programación Orientada a Objetos.</p>
+                <p>Sesiones personalizadas para programadores y estudiantes universitarios. Dominio de Estructuras de Datos, Análisis de Algoritmos y Patrones de Diseño Orientados a Objetos.</p>
             </article>
 
             <article class="card">
                 <div class="card-icon">[03]</div>
-                <h2>Consultoría en Automatización</h2>
-                <p>Diseño y evaluación de flujos lógicos, web scraping avanzado y scripts de análisis de datos estructurados utilizando Python.</p>
+                <h2>Consultoría para Empresas</h2>
+                <p>Soluciones para pequeñas empresas y startups. Desarrollo de scripts en Python, automatización de flujos de datos, web scraping avanzado y estructuración técnica de proyectos.</p>
             </article>
 
             <article class="card">
                 <div class="card-icon">[04]</div>
                 <h2>Mentoría Grupal</h2>
-                <p>Espacios colaborativos enfocados en la resolución de problemas lógicos, análisis de patrones de diseño y preparación técnica para grupos reducidos.</p>
+                <p>Capacitación técnica para pequeños equipos de trabajo o grupos académicos. Resolución colaborativa de problemas lógicos y estandarización de criterios de software.</p>
             </article>
         </section>
 
@@ -378,59 +525,130 @@
         <section class="stack-section" id="tecnologias">
             <div class="stack-container">
                 <h2 class="section-title">Dominio Técnico</h2>
-                <p class="section-subtitle">Soluciones basadas en estándares de ingeniería y buenas prácticas.</p>
+                <p class="section-subtitle">Ingeniería sólida adaptada a las necesidades de desarrolladores y negocios en crecimiento.</p>
                 <div class="tags">
                     <span class="tag">C# / Unity</span>
                     <span class="tag">Arquitectura de Software</span>
                     <span class="tag">Estructuras de Datos</span>
                     <span class="tag">Algoritmia Avanzada</span>
-                    <span class="tag">Python</span>
+                    <span class="tag">Python &amp; Scraping</span>
                     <span class="tag">Clean Code</span>
                     <span class="tag">POO</span>
                 </div>
             </div>
         </section>
 
-<!-- Downloads Section (PDFs) -->
-        <section class="downloads" id="descargas">
-            <h2 class="section-title">Catálogos e Información Oficial</h2>
-            <p class="section-subtitle">Descarga los folletos detallados con los planes, metodologías de trabajo y estructura de costos por área de especialidad.</p>
+        <!-- Nueva Sección: Modalidades de Atención -->
+        <section class="modality-section" id="modalidades">
+            <h2 class="section-title" style="text-align: center;">Modalidad de Atención</h2>
+            <p class="section-subtitle" style="text-align: center;">Flexibilidad para adaptarme a tu ubicación, ritmo de trabajo o dinámica de equipo.</p>
 
-            <div class="download-grid">
-                <!-- Tarjeta PDF 1: Catálogo General -->
-                <div class="download-card">
+            <div class="two-col-grid" style="margin-top: 1.5rem;">
+                <div class="col-card">
                     <div>
-                        <h3>Catálogo General</h3>
-                        <p>Documento completo con la descripción de todas las mentorías, consultoría técnica integral y alcances del servicio.</p>
+                        <div class="card-icon">[ Virtual ]</div>
+                        <h3>Sesiones Virtuales</h3>
+                        <p class="description" style="margin-bottom: 0;">
+                            Atención remota para programadores y empresas en cualquier ubicación. Sesiones en vivo mediante plataformas de videoconferencia, enfocadas en la revisión de código en pantalla compartida, análisis técnico e instrucción 1 a 1.
+                        </p>
                     </div>
-                    <a href="catalogo-general.pdf" download class="btn btn-primary">Descargar Catálogo (PDF)</a>
                 </div>
 
-                <!-- Tarjeta PDF 2: Desarrollo Web -->
-                <div class="download-card">
+                <div class="col-card">
                     <div>
-                        <h3>Ficha: Desarrollo Web</h3>
-                        <p>Acompañamiento especializado en tecnologías web, estructuración de bases de datos y buenas prácticas de arquitectura (Frontend/Backend).</p>
+                        <div class="card-icon">[ Presencial ]</div>
+                        <h3>Sesiones Presenciales</h3>
+                        <p class="description" style="margin-bottom: 0;">
+                            Atención personalizada en mi oficina. Diseñada para sesiones de trabajo intensivo, auditorías presenciales directas con equipos reducidos y mentorías sin distracciones.
+                        </p>
                     </div>
-                    <a href="ficha-desarrollo-web.pdf" download class="btn btn-secondary">Descargar Ficha (PDF)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section: Catálogo General y Precios (2 Columnas) -->
+        <section class="two-col-container" id="documentos">
+            <h2 class="section-title" style="text-align: center;">Documentación y Tarifas</h2>
+            <p class="section-subtitle" style="text-align: center;">Descarga las fichas informativas detalladas o consulta la estructura de inversión según tu perfil.</p>
+
+            <div class="two-col-grid">
+                <!-- Columna 1: Catálogo General y Fichas -->
+                <div class="col-card">
+                    <div>
+                        <h3>Catálogo General y Fichas</h3>
+                        <p class="description">Documentos técnicos en PDF con el desglose de contenidos, metodologías de trabajo y alcance para desarrolladores y empresas.</p>
+                        
+                        <div class="btn-stack">
+                            <a href="catalogo-general.pdf" download class="btn btn-primary">Descargar Catálogo General (PDF)</a>
+                            <a href="ficha-unity.pdf" download class="btn btn-secondary">Ficha: Unity &amp; C# (PDF)</a>
+                            <a href="ficha-desarrollo-web.pdf" download class="btn btn-secondary">Ficha: Desarrollo &amp; Py (PDF)</a>
+                            <a href="ficha-universitaria.pdf" download class="btn btn-secondary">Ficha: Mentoría Universitaria (PDF)</a>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Tarjeta PDF 3: Unity -->
-                <div class="download-card">
+                <!-- Columna 2: Precios y Planes -->
+                <div class="col-card">
                     <div>
-                        <h3>Ficha: Unity & C#</h3>
-                        <p>Enfoque avanzado en desarrollo de videojuegos, patrones de diseño en C#, optimización 2D/3D y sistemas de IA (Behavior Trees).</p>
+                        <h3>Estructura de Precios</h3>
+                        <p class="description">Tarifas estimadas según la modalidad del servicio, pensadas para adaptarse a presupuestos de freelancers y pymes.</p>
+                        
+                        <ul class="price-list">
+                            <li class="price-item">
+                                <div>
+                                    <span class="price-title">Mentoría Individual para Programadores</span>
+                                    <span class="price-desc">Estructuras de Datos, Algoritmos, C#</span>
+                                </div>
+                                <span class="price-tag">$25 / hora</span>
+                            </li>
+                            <li class="price-item">
+                                <div>
+                                    <span class="price-title">Auditoría de Código / Proyecto Unity</span>
+                                    <span class="price-desc">Revisión de arquitectura y optimización</span>
+                                </div>
+                                <span class="price-tag">Desde $150</span>
+                            </li>
+                            <li class="price-item">
+                                <div>
+                                    <span class="price-title">Consultoría Técnica para Empresas</span>
+                                    <span class="price-desc">Automatización Python, Backend, Scraping</span>
+                                </div>
+                                <span class="price-tag">$35 / hora</span>
+                            </li>
+                            <li class="price-item">
+                                <div>
+                                    <span class="price-title">Capacitación Grupal / Equipos</span>
+                                    <span class="price-desc">Sesiones prácticas de desarrollo (Máx. 4)</span>
+                                </div>
+                                <span class="price-tag">$15 / pers. hora</span>
+                            </li>
+                        </ul>
                     </div>
-                    <a href="ficha-unity.pdf" download class="btn btn-secondary">Descargar Ficha (PDF)</a>
+                    <a href="#contacto" class="btn btn-primary" style="margin-top: 1rem;">Solicitar Cotización Personalizada</a>
                 </div>
+            </div>
+        </section>
 
-                <!-- Tarjeta PDF 4: Mentoría Universitaria -->
-                <div class="download-card">
-                    <div>
-                        <h3>Ficha: Mentoría Universitaria</h3>
-                        <p>Apoyo académico enfocado en Estructuras de Datos, Análisis de Algoritmos, Métodos Cuantitativos y Programación Orientada a Objetos.</p>
+        <!-- Section: Contacto -->
+        <section class="contact-section" id="contacto">
+            <h2 class="section-title">Contacto Directo</h2>
+            <p class="section-subtitle">¿Eres un programador buscando acelerar tu nivel técnico o una pequeña empresa con un desafío de software?</p>
+
+            <div class="contact-box">
+                <p>Escríbeme para evaluar tus necesidades técnicas, discutir los detalles de tu proyecto o coordinar una sesión inicial de diagnóstico.</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <span>Email: </span>
+                        <a href="mailto:contacto@tu-dominio.com">contacto@tu-dominio.com</a>
                     </div>
-                    <a href="ficha-universitaria.pdf" download class="btn btn-secondary">Descargar Ficha (PDF)</a>
+                    <div class="contact-item">
+                        <span>LinkedIn: </span>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener">linkedin.com/in/tu-perfil</a>
+                    </div>
+                    <div class="contact-item">
+                        <span>Telegram: </span>
+                        <a href="https://t.me/" target="_blank" rel="noopener">@tu_usuario</a>
+                    </div>
                 </div>
             </div>
         </section>
