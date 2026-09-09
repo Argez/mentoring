@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultoría Técnica y Mentoría en Software | C#, Unity, Algoritmia</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Servicios de consultoría técnica, auditoría de código (Code Review) en Unity, y mentoría especializada en C#, Python, algoritmos y estructuras de datos.">
+    <meta name="keywords" content="Consultoria Unity, Code Review C#, Mentoria Programacion, Algoritmos, Estructuras de Datos, Auditoria de Codigo">
+    <meta name="author" content="Consultoría e Ingeniería de Software">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph para redes sociales -->
+    <meta property="og:title" content="Consultoría Técnica & Mentoría en Ingeniería de Software">
+    <meta property="og:description" content="Optimización de arquitectura en Unity, auditoría de código en C# y mentoría en algoritmia para desarrolladores y estudiantes.">
+    <meta property="og:type" content="website">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent-color: #58a6ff;
+            --accent-green: #2ea043;
+            --accent-purple: #bc8cff;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding-top: 70px;
+        }
+
+        /* Header Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(13, 17, 23, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1100px;
+            margin: 4rem auto 2rem;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            background: rgba(188, 140, 255, 0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            border: 1px solid rgba(188, 140, 255, 0.2);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.2rem);
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            max-width: 750px;
+            margin: 0 auto 2.5rem;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: #0d1117;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--text-secondary);
+            transform: translateY(-2px);
+        }
+
+        /* Feature Pillars */
+        .pillars {
+            max-width: 1100px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            transition: border-color 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .card-icon {
+            font-family: var(--font-mono);
+            color: var(--accent-color);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .card h2 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        /* Tech Stack Section */
+        .stack-section {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 4rem 1.5rem;
+            text-align: center;
+        }
+
+        .stack-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--text-secondary);
+            margin-bottom: 2.5rem;
+        }
+
+        .tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .tag {
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            color: var(--text-primary);
+        }
+
+        /* Downloads Section */
+        .downloads {
+            max-width: 1100px;
+            margin: 5rem auto;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2.5rem;
+        }
+
+        .download-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .download-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .download-card p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+        }
+
+        /* Responsive Nav */
+        @media (max-width: 600px) {
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Nav -->
+    <header>
+        <nav>
+            <a href="#" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
+            <ul class="nav-links">
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#tecnologias">Especialidad</a></li>
+                <li><a href="#descargas">Documentos PDF</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="hero-badge">Criterio Técnico &amp; Arquitectura</span>
+            <h1>Consultoría Especializada y Mentoría de Código</h1>
+            <p>Diagnóstico de arquitectura en Unity, revisiones de código en C#, e instrucción universitaria avanzada en algoritmia y estructuras de datos.</p>
+            
+            <div class="cta-group">
+                <a href="#descargas" class="btn btn-primary">Descargar Dossier &amp; Precios</a>
+                <a href="#servicios" class="btn btn-secondary">Ver Servicios</a>
+            </div>
+        </section>
+
+        <!-- Pillars / Services Section -->
+        <section class="pillars" id="servicios">
+            <article class="card">
+                <div class="card-icon">[01]</div>
+                <h2>Code Review &amp; Auditoría</h2>
+                <p>Análisis exhaustivo de proyectos en Unity y C#. Detección de cuellos de botella de rendimiento, refactorización lógica y evaluación de arquitectura (Behavior Trees, optimización 2D).</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">[02]</div>
+                <h2>Mentoría y Tutoría 1 a 1</h2>
+                <p>Sesiones académicas y profesionales enfocadas en Fundamentos de Ingeniería, Algoritmos Avanzados, Estructuras de Datos y Programación Orientada a Objetos.</p>
+            </article>
+
+            <article class="card">
+                <div class="card-icon">[03]</div>
+                <h2>Consultoría en Automatización</h2>
+                <p>Diseño y evaluación de flujos lógicos, web scraping avanzado y scripts de análisis de datos estructurados utilizando Python.</p>
+            </article>
+        </section>
+
+        <!-- Tech Stack Section -->
+        <section class="stack-section" id="tecnologias">
+            <div class="stack-container">
+                <h2 class="section-title">Dominio Técnico</h2>
+                <p class="section-subtitle">Soluciones basadas en estándares de ingeniería y buenas prácticas.</p>
+                <div class="tags">
+                    <span class="tag">C# / Unity</span>
+                    <span class="tag">Arquitectura de Software</span>
+                    <span class="tag">Estructuras de Datos</span>
+                    <span class="tag">Algoritmia Avanzada</span>
+                    <span class="tag">Python</span>
+                    <span class="tag">Clean Code</span>
+                    <span class="tag">POO</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Downloads Section (PDFs) -->
+        <section class="downloads" id="descargas">
+            <h2 class="section-title">Catálogos e Información Oficial</h2>
+            <p class="section-subtitle">Descarga los folletos detallados con los planes, metodologías de trabajo y estructura de costos.</p>
+
+            <div class="download-grid">
+                <!-- Tarjeta PDF 1 -->
+                <div class="download-card">
+                    <div>
+                        <h3>Catálogo de Servicios</h3>
+                        <p>Documento completo con la descripción de las mentorías, consultoría técnica y alcances del servicio.</p>
+                    </div>
+                    <!-- Cambia 'catalogo-general.pdf' por el nombre exacto de tu archivo PDF -->
+                    <a href="catalogo-general.pdf" download class="btn btn-primary">Descargar Catálogo (PDF)</a>
+                </div>
+
+                <!-- Tarjeta PDF 2 -->
+                <div class="download-card">
+                    <div>
+                        <h3>Ficha de Planes y Tarifas</h3>
+                        <p>Desglose detallado de precios por horas de mentoría, paquetes de Code Review y condiciones de servicio.</p>
+                    </div>
+                    <!-- Cambia 'ficha-precios.pdf' por el nombre exacto de tu archivo PDF -->
+                    <a href="ficha-precios.pdf" download class="btn btn-secondary">Descargar Tarifas (PDF)</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Servicios de Consultoría Técnica e Ingeniería de Software. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
