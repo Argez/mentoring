@@ -300,7 +300,17 @@
             font-size: 0.85rem;
             margin-top: 4rem;
         }
-
+        .download-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center; /* Añadido para igualar la imagen */
+        }
         /* Responsive Nav */
         @media (max-width: 600px) {
             .nav-links {
@@ -381,28 +391,46 @@
             </div>
         </section>
 
-        <!-- Downloads Section (PDFs) -->
+<!-- Downloads Section (PDFs) -->
         <section class="downloads" id="descargas">
             <h2 class="section-title">Catálogos e Información Oficial</h2>
-            <p class="section-subtitle">Descarga los folletos detallados con los planes, metodologías de trabajo y estructura de costos.</p>
+            <p class="section-subtitle">Descarga los folletos detallados con los planes, metodologías de trabajo y estructura de costos por área de especialidad.</p>
 
             <div class="download-grid">
-                <!-- Tarjeta PDF 1 -->
+                <!-- Tarjeta PDF 1: Catálogo General -->
                 <div class="download-card">
                     <div>
-                        <h3>Catálogo de Servicios</h3>
-                        <p>Documento completo con la descripción de las mentorías, consultoría técnica y alcances del servicio.</p>
+                        <h3>Catálogo General</h3>
+                        <p>Documento completo con la descripción de todas las mentorías, consultoría técnica integral y alcances del servicio.</p>
                     </div>
                     <a href="catalogo-general.pdf" download class="btn btn-primary">Descargar Catálogo (PDF)</a>
                 </div>
 
-                <!-- Tarjeta PDF 2 -->
+                <!-- Tarjeta PDF 2: Desarrollo Web -->
                 <div class="download-card">
                     <div>
-                        <h3>Ficha de Planes y Tarifas</h3>
-                        <p>Desglose detallado de precios por horas de mentoría, paquetes de Code Review y condiciones de servicio.</p>
+                        <h3>Ficha: Desarrollo Web</h3>
+                        <p>Acompañamiento especializado en tecnologías web, estructuración de bases de datos y buenas prácticas de arquitectura (Frontend/Backend).</p>
                     </div>
-                    <a href="ficha-precios.pdf" download class="btn btn-secondary">Descargar Tarifas (PDF)</a>
+                    <a href="ficha-desarrollo-web.pdf" download class="btn btn-secondary">Descargar Ficha (PDF)</a>
+                </div>
+
+                <!-- Tarjeta PDF 3: Unity -->
+                <div class="download-card">
+                    <div>
+                        <h3>Ficha: Unity & C#</h3>
+                        <p>Enfoque avanzado en desarrollo de videojuegos, patrones de diseño en C#, optimización 2D/3D y sistemas de IA (Behavior Trees).</p>
+                    </div>
+                    <a href="ficha-unity.pdf" download class="btn btn-secondary">Descargar Ficha (PDF)</a>
+                </div>
+
+                <!-- Tarjeta PDF 4: Mentoría Universitaria -->
+                <div class="download-card">
+                    <div>
+                        <h3>Ficha: Mentoría Universitaria</h3>
+                        <p>Apoyo académico enfocado en Estructuras de Datos, Análisis de Algoritmos, Métodos Cuantitativos y Programación Orientada a Objetos.</p>
+                    </div>
+                    <a href="ficha-universitaria.pdf" download class="btn btn-secondary">Descargar Ficha (PDF)</a>
                 </div>
             </div>
         </section>
