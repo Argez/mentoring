@@ -18,6 +18,7 @@
 
     <style>
         :root {
+            /* Variables por defecto (Modo Oscuro) */
             --bg-color: #0d1117;
             --card-bg: #161b22;
             --border-color: #30363d;
@@ -26,8 +27,29 @@
             --accent-color: #58a6ff;
             --accent-green: #2ea043;
             --accent-purple: #bc8cff;
+            --header-bg: rgba(13, 17, 23, 0.85);
+            --badge-bg: rgba(188, 140, 255, 0.1);
+            --badge-border: rgba(188, 140, 255, 0.2);
+            --btn-text: #0d1117;
+            
             --font-sans: 'Inter', sans-serif;
             --font-mono: 'Fira Code', monospace;
+        }
+
+        /* Variables sobrescritas (Modo Claro) */
+        body.modo-claro {
+            --bg-color: #fcfbf9; 
+            --card-bg: #ffffff; 
+            --border-color: #e6dfd3; 
+            --text-primary: #26231f; 
+            --text-secondary: #665f54; 
+            --accent-color: #d4af37; 
+            --accent-green: #8a6d3b; 
+            --accent-purple: #c5a059; 
+            --header-bg: rgba(252, 251, 249, 0.85);
+            --badge-bg: rgba(197, 160, 89, 0.1);
+            --badge-border: rgba(197, 160, 89, 0.2);
+            --btn-text: #ffffff;
         }
 
         * {
@@ -46,6 +68,7 @@
             font-family: var(--font-sans);
             line-height: 1.6;
             padding-top: 70px;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         /* Header Nav */
@@ -54,10 +77,11 @@
             top: 0;
             left: 0;
             width: 100%;
-            background: rgba(13, 17, 23, 0.85);
+            background: var(--header-bg);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
             z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         nav {
@@ -81,6 +105,7 @@
             display: flex;
             gap: 1.5rem;
             list-style: none;
+            align-items: center;
         }
 
         .nav-links a {
@@ -91,6 +116,29 @@
         }
 
         .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Select de Tema */
+        .theme-select {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.3s ease;
+        }
+
+        .theme-select:hover {
+            border-color: var(--accent-color);
+        }
+
+        .theme-select option {
+            background-color: var(--card-bg);
             color: var(--text-primary);
         }
 
@@ -107,10 +155,10 @@
             font-family: var(--font-mono);
             font-size: 0.85rem;
             color: var(--accent-purple);
-            background: rgba(188, 140, 255, 0.1);
+            background: var(--badge-bg);
             padding: 0.3rem 0.8rem;
             border-radius: 20px;
-            border: 1px solid rgba(188, 140, 255, 0.2);
+            border: 1px solid var(--badge-border);
             margin-bottom: 1.5rem;
         }
 
@@ -152,7 +200,7 @@
 
         .btn-primary {
             background-color: var(--accent-color);
-            color: #0d1117;
+            color: var(--btn-text);
             border: none;
         }
 
@@ -187,7 +235,7 @@
             border: 1px solid var(--border-color);
             border-radius: 8px;
             padding: 2rem;
-            transition: border-color 0.2s ease;
+            transition: border-color 0.2s ease, background-color 0.3s ease;
         }
 
         .card:hover {
@@ -234,6 +282,7 @@
             border: 2px solid var(--border-color);
             object-fit: cover;
             background-color: var(--card-bg);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .about-content h2 {
@@ -255,6 +304,7 @@
             border-bottom: 1px solid var(--border-color);
             padding: 4rem 1.5rem;
             text-align: center;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .stack-container {
@@ -287,6 +337,7 @@
             padding: 0.4rem 1rem;
             border-radius: 20px;
             color: var(--text-primary);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         /* Modality Section */
@@ -318,6 +369,7 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .col-card h3 {
@@ -401,6 +453,7 @@
             padding: 3rem 2rem;
             max-width: 700px;
             margin: 2rem auto 0;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
         }
 
         .contact-info {
@@ -429,6 +482,7 @@
             color: var(--text-secondary);
             font-size: 0.85rem;
             margin-top: 4rem;
+            transition: border-color 0.3s ease;
         }
 
         /* Responsive Layout */
@@ -464,6 +518,13 @@
                 <li><a href="#modalidades">Modalidades</a></li>
                 <li><a href="#documentos">Catálogo y Precios</a></li>
                 <li><a href="#contacto">Contacto</a></li>
+                <li>
+                    <!-- Select Integrado -->
+                    <select id="theme-select" class="theme-select">
+                        <option value="dark">Oscuro</option>
+                        <option value="light">Claro</option>
+                    </select>
+                </li>
             </ul>
         </nav>
     </header>
@@ -662,5 +723,27 @@
         <p>&copy; 2026 Servicios de Consultoría Técnica e Ingeniería de Software. Todos los derechos reservados.</p>
     </footer>
 
+    <!-- Script de Cambio de Tema -->
+    <script>
+        const themeSelect = document.getElementById('theme-select');
+        
+        // Verifica si hay un tema guardado en localStorage al cargar la página
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('modo-claro');
+            themeSelect.value = 'light';
+        }
+
+        // Evento para cambiar de tema usando el select
+        themeSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'light') {
+                document.body.classList.add('modo-claro');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('modo-claro');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
 </body>
 </html>
