@@ -74,6 +74,7 @@
             max-width: 1100px; margin: 0 auto;
             display: flex; justify-content: space-between; align-items: center;
             padding: 1rem 1.5rem;
+            position: relative;
         }
 
         .logo {
@@ -96,6 +97,27 @@
             transition: border-color 0.2s ease, background-color 0.3s ease;
         }
         .theme-select:hover { border-color: var(--accent-color); }
+
+        /* Botón de Menú Hamburguesa */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 22px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: var(--text-primary);
+            transition: background-color 0.3s ease;
+        }
 
         /* Hero Section */
         .hero {
@@ -276,7 +298,34 @@
         }
 
         @media (max-width: 550px) {
-            .nav-links { display: none; }
+            .menu-toggle { display: flex; }
+            .nav-links { 
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--card-bg);
+                border-bottom: 1px solid var(--border-color);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1.5rem;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+                gap: 1rem;
+            }
+            .nav-links.active {
+                display: flex;
+            }
+            .nav-links li {
+                width: 100%;
+            }
+            .nav-links li a {
+                display: block;
+                width: 100%;
+            }
+            .theme-select {
+                width: 100%;
+            }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
@@ -288,7 +337,12 @@
     <header>
         <nav>
             <a href="index.html" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
-            <ul class="nav-links">
+            <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-links" id="nav-links">
                 <li><a href="index.html">← Volver al Inicio</a></li>
                 <li><a href="wiki.html">Wiki de Servicios</a></li>
                 <li><a href="index.html#documentos">Precios &amp; Fichas</a></li>
@@ -449,9 +503,23 @@
         </div>
     </footer>
 
-    <!-- Script de Cambio de Tema -->
+    <!-- Script de Cambio de Tema y Menú Hamburguesa -->
     <script>
         const themeSelect = document.getElementById('theme-select');
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        // Control del menú hamburguesa responsivo
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Cerrar menú automáticamente al hacer clic en un enlace
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
         
         const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'light') {

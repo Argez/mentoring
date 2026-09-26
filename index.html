@@ -1,3 +1,4 @@
+<!-- Código actualizado basado en index_8.html[cite: 12] -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -75,14 +76,35 @@
         }
 
         nav {
-            max-width: 1100px; margin: 0 auto;
-            display: flex; justify-content: space-between; align-items: center;
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             padding: 1rem 1.5rem;
+            position: relative;
         }
-
+        
         .logo {
             font-family: var(--font-mono); font-weight: 600;
             color: var(--accent-color); text-decoration: none; font-size: 1.1rem;
+        }
+
+        /* Controles de Navegación */
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: color 0.3s ease;
         }
 
         .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
@@ -251,6 +273,7 @@
             color: var(--text-secondary); font-size: 0.85rem;
         }
 
+        /* --- Media Queries --- */
         @media (max-width: 850px) {
             .two-col-grid { grid-template-columns: 1fr; }
             .about-section { grid-template-columns: 1fr; text-align: center; }
@@ -261,8 +284,34 @@
             .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
+        /* Adaptación del Menú Hamburguesa */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--header-bg);
+                backdrop-filter: blur(10px);
+                border-bottom: 1px solid var(--border-color);
+                padding: 1.5rem 0;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+                text-align: center;
+                gap: 1.5rem;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+
         @media (max-width: 550px) {
-            .nav-links { display: none; }
             .footer-grid { grid-template-columns: 1fr; }
             .footer-bottom { flex-direction: column; text-align: center; }
         }
@@ -270,11 +319,22 @@
 </head>
 <body>
 
-    <!-- Header Nav (Limpio y sin saturar) -->
+    <!-- Header Nav -->
     <header>
         <nav>
             <a href="#" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
-            <ul class="nav-links">
+            
+            <!-- Controles (Selector de Tema + Hamburguesa) -->
+            <div class="nav-controls">
+                <select id="theme-select" class="theme-select">
+                    <option value="dark">Oscuro</option>
+                    <option value="light">Claro</option>
+                </select>
+                <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú">☰</button>
+            </div>
+
+            <!-- Enlaces de Navegación -->
+            <ul class="nav-links" id="nav-links">
                 <li><a href="#nosotros">Nosotros</a></li>
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#modalidades">Modalidades</a></li>
@@ -282,12 +342,6 @@
                 <li><a href="wiki.html">Wiki</a></li>
                 <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#contacto">Contacto</a></li>
-                <li>
-                    <select id="theme-select" class="theme-select">
-                        <option value="dark">Oscuro</option>
-                        <option value="light">Claro</option>
-                    </select>
-                </li>
             </ul>
         </nav>
     </header>
@@ -579,8 +633,9 @@
         </div>
     </footer>
 
-    <!-- Script de Cambio de Tema -->
+    <!-- Scripts (Tema y Menú Móvil) -->
     <script>
+        // --- Gestión del Tema (Claro/Oscuro) ---
         const themeSelect = document.getElementById('theme-select');
         
         const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -597,6 +652,22 @@
                 document.body.classList.remove('modo-claro');
                 localStorage.setItem('theme', 'dark');
             }
+        });
+
+        // --- Gestión del Menú Hamburguesa ---
+        const menuToggle = document.getElementById('menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+
+        // Alternar menú al hacer clic en el botón
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Cerrar menú automáticamente al hacer clic en cualquier enlace
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
         });
     </script>
 </body>
