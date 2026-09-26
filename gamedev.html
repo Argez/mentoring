@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unity & Programación de Videojuegos | Mentoría & Asesoría</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Variables por defecto (Modo Oscuro) */
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent-color: #58a6ff;
+            --accent-green: #2ea043;
+            --accent-purple: #bc8cff;
+            --accent-red: #f85149;
+            --header-bg: rgba(13, 17, 23, 0.85);
+            --badge-bg: rgba(188, 140, 255, 0.1);
+            --badge-border: rgba(188, 140, 255, 0.2);
+            --btn-text: #0d1117;
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        /* Variables sobrescritas (Modo Claro) */
+        body.modo-claro {
+            --bg-color: #fcfbf9; 
+            --card-bg: #ffffff; 
+            --border-color: #e6dfd3; 
+            --text-primary: #26231f; 
+            --text-secondary: #665f54; 
+            --accent-color: #d4af37; 
+            --accent-green: #8a6d3b; 
+            --accent-purple: #c5a059; 
+            --accent-red: #a83232;
+            --header-bg: rgba(252, 251, 249, 0.85);
+            --badge-bg: rgba(197, 160, 89, 0.1);
+            --badge-border: rgba(197, 160, 89, 0.2);
+            --btn-text: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding-top: 70px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header Nav */
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        nav {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono); font-weight: 600;
+            color: var(--accent-color); text-decoration: none; font-size: 1.1rem;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.95rem; transition: color 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .theme-select {
+            background-color: var(--card-bg); color: var(--text-primary);
+            border: 1px solid var(--border-color); border-radius: 6px;
+            padding: 0.4rem 0.8rem; font-family: var(--font-sans);
+            font-size: 0.85rem; cursor: pointer; outline: none;
+            transition: border-color 0.2s ease, background-color 0.3s ease;
+        }
+        .theme-select:hover { border-color: var(--accent-color); }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1100px; margin: 3rem auto 4rem; padding: 0 1.5rem; text-align: left;
+        }
+        .badge {
+            display: inline-block;
+            font-family: var(--font-mono); font-size: 0.8rem;
+            color: var(--accent-purple); background: var(--badge-bg);
+            border: 1px solid var(--badge-border); padding: 0.3rem 0.8rem;
+            border-radius: 20px; margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem); font-weight: 800;
+            margin-bottom: 1rem; line-height: 1.2;
+        }
+        .hero p {
+            color: var(--text-secondary); font-size: 1.15rem; max-width: 820px; margin-bottom: 2rem;
+        }
+
+        .section-container {
+            max-width: 1100px; margin: 0 auto 4rem; padding: 0 1.5rem;
+        }
+
+        .section-title {
+            font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;
+        }
+
+        /* Scope Grid (Lo que SÍ y NO abarca) */
+        .scope-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem; margin-bottom: 3rem;
+        }
+        .scope-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 1.8rem;
+        }
+        .scope-box.yes { border-top: 4px solid var(--accent-green); }
+        .scope-box.no { border-top: 4px solid var(--accent-red); }
+        .scope-box h3 { font-size: 1.2rem; margin-bottom: 1rem; color: var(--text-primary); }
+        .scope-box ul { list-style: none; }
+        .scope-box li {
+            color: var(--text-secondary); font-size: 0.95rem;
+            margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 0.6rem;
+        }
+
+        /* Experience Box */
+        .experience-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--accent-color);
+            border-radius: 8px; padding: 2rem; margin-bottom: 3rem;
+        }
+        .experience-box h3 { color: var(--accent-color); font-size: 1.3rem; margin-bottom: 0.8rem; }
+        .experience-box p { color: var(--text-secondary); font-size: 1rem; line-height: 1.7; margin-bottom: 1rem; }
+
+        .grid-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem; margin-top: 1.5rem;
+        }
+
+        .card {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 1.8rem;
+            transition: border-color 0.2s ease, background-color 0.3s ease;
+        }
+        .card:hover { border-color: var(--accent-color); }
+        .card h3 { font-size: 1.25rem; margin-bottom: 0.8rem; color: var(--text-primary); }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6; }
+
+        .card-tag {
+            font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--accent-green); margin-bottom: 0.5rem; display: block;
+        }
+
+        .problem-solution-box {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 2rem; margin-bottom: 2rem;
+        }
+        .problem-solution-box h3 { margin-bottom: 1rem; color: var(--text-primary); }
+        .problem-solution-box ul { margin-left: 1.5rem; color: var(--text-secondary); }
+        .problem-solution-box li { margin-bottom: 0.8rem; }
+
+        .btn {
+            display: inline-flex; align-items: center; justify-content: center;
+            padding: 0.8rem 1.5rem; border-radius: 6px; font-weight: 600;
+            text-decoration: none; font-size: 0.95rem; cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .btn-primary { background-color: var(--accent-color); color: var(--btn-text); border: none; }
+        .btn-primary:hover { opacity: 0.9; }
+
+        /* Footer Multicolumna (Idéntico a index.html) */
+        footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 1.5rem 2rem;
+            margin-top: 6rem;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.5fr 1.5fr;
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-col h4 {
+            font-size: 1rem;
+            margin-bottom: 1.2rem;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            letter-spacing: -0.01em;
+        }
+
+        .footer-col p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-badge {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            color: var(--accent-green);
+            background: rgba(46, 160, 67, 0.1);
+            padding: 0.15rem 0.5rem;
+            border-radius: 4px;
+            border: 1px solid rgba(46, 160, 67, 0.2);
+            margin-left: 0.4rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border-color);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+
+        @media (max-width: 850px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+
+        @media (max-width: 550px) {
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Nav -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
+            <ul class="nav-links">
+                <li><a href="index.html">← Volver al Inicio</a></li>
+                <li><a href="wiki.html">Wiki de Servicios</a></li>
+                <li><a href="index.html#documentos">Precios &amp; Fichas</a></li>
+                <li><a href="index.html#contacto">Contacto</a></li>
+                <li>
+                    <select id="theme-select" class="theme-select">
+                        <option value="dark">Oscuro</option>
+                        <option value="light">Claro</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <span class="badge">PROGRAMACIÓN &amp; OPTIMIZACIÓN EN UNITY</span>
+            <h1>Aprende a Programar Videojuegos en Unity desde Cero</h1>
+            <p>Mentoría técnica especializada 1 a 1 enfocada 100% en lógica de programación, arquitectura limpia en C# y optimización de rendimiento. Transforma tus ideas en código profesional y funcional.</p>
+            <a href="index.html#contacto" class="btn btn-primary">Agendar Sesión de Diagnóstico</a>
+        </section>
+
+        <!-- Scope Section -->
+        <section class="section-container">
+            <h2 class="section-title">Alcance y Especialización del Servicio</h2>
+            <div class="scope-grid">
+                
+                <div class="scope-box yes">
+                    <h3>✅ En lo que SÍ te puedo ayudar</h3>
+                    <ul>
+                        <li><span>✔</span> <strong>Enseñar a programar en Unity desde cero:</strong> Sintaxis C#, lógica de juego, componentes y APIs del motor.</li>
+                        <li><span>✔</span> <strong>Arquitectura de software para juegos:</strong> Clean Code, ScriptableObjects, Máquinas de Estados y Árboles de Comportamiento.</li>
+                        <li><span>✔</span> <strong>Optimización e ingeniería:</strong> Gestión de memoria (Garbage Collection), perfiles de rendimiento (Profiler) y física.</li>
+                        <li><span>✔</span> <strong>Herramientas avanzadas:</strong> Integración de Cinemachine, Tilemaps, xNode y controladores personalizados.</li>
+                    </ul>
+                </div>
+
+                <div class="scope-box no">
+                    <h3>❌ Lo que NO abarca este servicio</h3>
+                    <ul>
+                        <li><span>✖</span> <strong>Diseño Artístico:</strong> No creo Pixel Art, modelos 3D, texturas ni animaciones.</li>
+                        <li><span>✖</span> <strong>Audio y Música:</strong> No compongo bandas sonoras ni efectos de sonido (SFX).</li>
+                        <li><span>✖</span> <strong>Escritura Narrativa:</strong> El enfoque es puramente técnico; no redacto guiones ni diálogos argumentales.</li>
+                    </ul>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Experience Box -->
+        <section class="section-container">
+            <h2 class="section-title">Enfoque Técnico y Experiencia Real</h2>
+            <div class="experience-box">
+                <h3>Aprende con Experiencia de Campo, no solo Teoría</h3>
+                <p>
+                    Aporto todo el conocimiento adquirido de forma autodidacta durante más de 3 años construyendo la arquitectura, mecánicas e Inteligencia Artificial de mi propio proyecto de videojuego indie (un <i>action-platformer Metroidvania 2D</i> desarrollado en Unity), sumado a mi formación rigurosa como <strong>Ingeniero de Software y Profesor Universitario</strong>.
+                </p>
+                <p>
+                    No te enseñaré trucos superficiales; aprenderás a resolver los verdaderos problemas técnicos a los que se enfrenta un desarrollador al llevar un juego desde el primer <i>script</i> hasta una Demo jugable y pulida.
+                </p>
+            </div>
+        </section>
+
+        <!-- Roadmap / Levels -->
+        <section class="section-container">
+            <h2 class="section-title">Niveles de Mentoría</h2>
+            <div class="grid-cards">
+                
+                <article class="card">
+                    <span class="card-tag">NIVEL 1 • DESDE CERO</span>
+                    <h3>Fundamentos de Programación C#</h3>
+                    <p>Diseñado para principiantes absolutos. Aprenderás variables, condicionales, bucles, Programación Orientada a Objetos (POO), arquitectura de MonoBehaviours y el sistema de física e Input de Unity.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-tag">NIVEL 2 • INTERMEDIO</span>
+                    <h3>Sistemas y Lógica de Juego</h3>
+                    <p>Estructuración de sistemas escalables mediante ScriptableObjects, gestión de inventarios, máquinas de estados finitos (FSM) para movimiento y enemigos, y uso eficiente de Tilemaps y Cinemachine.</p>
+                </article>
+
+                <article class="card">
+                    <span class="card-tag">NIVEL 3 • AVANZADO</span>
+                    <h3>Optimización &amp; IA para NPCs</h3>
+                    <p>Implementación de Árboles de Comportamiento (Behavior Trees) para jefes y enemigos complejos, auditoría de memoria con el Profiler de Unity, reducción de GC Alloc y optimización para hardware modesto.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Local Context Section -->
+        <section class="section-container">
+            <h2 class="section-title">Desarrollando Videojuegos desde Venezuela</h2>
+            <div class="problem-solution-box">
+                <h3>Superando Barreras Locales con Estrategia Técnica</h3>
+                <p style="color: var(--text-secondary); margin-bottom: 1rem;">
+                    Crear juegos bajo las condiciones locales requiere un enfoque inteligente para ser eficiente y no perder trabajo:
+                </p>
+                <ul>
+                    <li><strong>Control de Versiones y Redundancia:</strong> Flujos de trabajo con Git y backups automáticos para proteger tu proyecto frente a cortes imprevistos de electricidad o internet.</li>
+                    <li><strong>Optimización de Recursos y Hardware:</strong> Técnicas para exprimir el rendimiento de tu PC actual sin necesidad de comprar equipos inalcanzables en las primeras etapas.</li>
+                    <li><strong>Estrategias de Publicación:</strong> Guía sobre cómo configurar builds estables y exportar correctamente para Steam e Itch.io superando trabas operativas.</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer Multicolumna (Idéntico al de index.html) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Columna 1: Presentación de Marca -->
+                <div class="footer-col">
+                    <h4>&lt;Ingeniería &amp; Mentoría /&gt;</h4>
+                    <p>Consultoría de software, auditoría de código C#/Unity y mentoría técnica especializada para desarrolladores independientes, startups y proyectos académicos.</p>
+                </div>
+
+                <!-- Columna 2: Navegación -->
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#nosotros">Sobre Mí</a></li>
+                        <li><a href="index.html#servicios">Servicios</a></li>
+                        <li><a href="index.html#modalidades">Modalidades</a></li>
+                        <li><a href="index.html#documentos">Precios &amp; Fichas</a></li>
+                        <li><a href="index.html#proceso">Proceso de Trabajo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Wiki & Recursos -->
+                <div class="footer-col">
+                    <h4>Recursos &amp; Wiki</h4>
+                    <ul class="footer-links">
+                        <li><a href="wiki.html">Wiki de Servicios <span class="footer-badge">Documentación</span></a></li>
+                        <li><a href="https://drive.google.com/file/d/1vsCAX3v1q_d2WXgp9ayqdXkMtJHY60KZ/view?usp=sharing" target="_blank">Catálogo General (PDF)</a></li>
+                        <li><a href="https://drive.google.com/file/d/15tqroLZ4_QOP8B_IKFep4nleWOsQcdmB/view?usp=sharingf" target="_blank">Ficha Unity &amp; C#</a></li>
+                        <li><a href="https://drive.google.com/file/d/1kd5oscjE5IkCcFalxhyyyZeGRdUEPb65/view?usp=sharing" target="_blank">Ficha Python &amp; Scraping</a></li>
+                        <li><a href="https://drive.google.com/file/d/1dFPXfccNHVgQpzBkzmlyD0tGHupCuhMG/view?usp=sharing" target="_blank">Ficha Mentoría Algoritmia</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4: Contacto & Atención -->
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:rodarge32@gmail.com">rodarge32@gmail.com</a></li>
+                        <li><a href="https://wa.link/a9d5ua" target="_blank" rel="noopener">+58 424 403 6571</a></li>
+                        <li><a href="index.html#modalidades">Atención Virtual &amp; Presencial</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Servicios de Consultoría Técnica e Ingeniería de Software. Todos los derechos reservados.</p>
+                <p>Diseñado para desarrolladores y pequeñas empresas.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script de Cambio de Tema -->
+    <script>
+        const themeSelect = document.getElementById('theme-select');
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('modo-claro');
+            themeSelect.value = 'light';
+        }
+
+        themeSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'light') {
+                document.body.classList.add('modo-claro');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('modo-claro');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

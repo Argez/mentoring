@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pensum y Tecnologías | Consultoría Técnica</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* Variables por defecto (Modo Oscuro) */
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent-color: #58a6ff;
+            --accent-green: #2ea043;
+            --accent-purple: #bc8cff;
+            --header-bg: rgba(13, 17, 23, 0.85);
+            --btn-text: #0d1117;
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        /* Variables sobrescritas (Modo Claro) */
+        body.modo-claro {
+            --bg-color: #fcfbf9; 
+            --card-bg: #ffffff; 
+            --border-color: #e6dfd3; 
+            --text-primary: #26231f; 
+            --text-secondary: #665f54; 
+            --accent-color: #d4af37; 
+            --accent-green: #8a6d3b; 
+            --accent-purple: #c5a059; 
+            --header-bg: rgba(252, 251, 249, 0.85);
+            --btn-text: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding-top: 90px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Header Nav */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        nav {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono);
+            font-weight: 600;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        .theme-select {
+            background-color: var(--card-bg);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 0.4rem 0.8rem;
+            font-family: var(--font-sans);
+            font-size: 0.85rem;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.2s ease, background-color 0.3s ease;
+        }
+
+        /* Page Layout */
+        .page-header {
+            max-width: 1100px;
+            margin: 2rem auto 3rem;
+            padding: 0 1.5rem;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .page-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* PDF List Grid */
+        .pdf-grid {
+            max-width: 1100px;
+            margin: 0 auto 5rem;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .pdf-card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            transition: border-color 0.2s ease, background-color 0.3s ease;
+        }
+
+        .pdf-card:hover {
+            border-color: var(--accent-color);
+        }
+
+        .pdf-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+
+        .pdf-title-group h2 {
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+            color: var(--text-primary);
+        }
+
+        .pdf-title-group span {
+            font-family: var(--font-mono);
+            font-size: 0.85rem;
+            color: var(--accent-green);
+        }
+
+        .pdf-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            background-color: var(--bg-color);
+            border: 1px solid var(--border-color);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            color: var(--text-primary);
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            width: 100%;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-color);
+            color: var(--btn-text);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.9;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            margin-top: 4rem;
+        }
+
+        /* Estilos del Footer Principal */
+        .main-footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 1.5rem 1.5rem;
+            margin-top: 5rem;
+            font-family: var(--font-sans);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            max-width: 380px;
+            line-height: 1.5;
+        }
+
+        .footer-links h4, .footer-social h4 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-links ul, .footer-social ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a, .footer-social a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover, .footer-social a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Responsividad para el Footer */
+/* Responsividad para el Footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: left;
+                gap: 2.5rem;
+            }
+            .footer-brand p {
+                margin: 1rem 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Nav -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
+            <ul class="nav-links">
+                <li><a href="index.html">← Volver al Inicio</a></li>
+                <li>
+                    <select id="theme-select" class="theme-select">
+                        <option value="dark">🌙 Oscuro</option>
+                        <option value="light">☀️ Claro</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1>Catálogo de Pensum y Tecnologías</h1>
+            <p>Descarga los temarios detallados en PDF. Cada documento especifica los fundamentos teóricos, herramientas prácticas y el alcance de las mentorías y auditorías.</p>
+        </section>
+
+        <!-- PDF Grid -->
+        <section class="pdf-grid">
+            
+            <!-- Card 1: Unity & C# -->
+            <article class="pdf-card">
+                <div class="pdf-header">
+                    <div class="pdf-title-group">
+                        <h2>Arquitectura en Unity 2D & C#</h2>
+                        <span>[ Documento PDF ]</span>
+                    </div>
+                </div>
+                <p class="pdf-description">Pensum orientado al desarrollo de sistemas escalables para videojuegos. Abarca desde la estructuración del código hasta el diseño de Inteligencia Artificial para NPCs.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">C#</span>
+                    <span class="tech-tag">Unity</span>
+                    <span class="tech-tag">Behavior Trees</span>
+                    <span class="tech-tag">Cinemachine</span>
+                    <span class="tech-tag">Tilemaps</span>
+                </div>
+                <a href="#" download class="btn btn-primary">📄 Descargar Temario</a>
+            </article>
+
+            <!-- Card 2: Ciencias de la Computación -->
+            <article class="pdf-card">
+                <div class="pdf-header">
+                    <div class="pdf-title-group">
+                        <h2>Algoritmia y Estructuras de Datos</h2>
+                        <span>[ Documento PDF ]</span>
+                    </div>
+                </div>
+                <p class="pdf-description">Syllabus universitario enfocado en la resolución lógica de problemas, análisis de complejidad (Big O) y gestión eficiente de memoria.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Estructuras de Datos</span>
+                    <span class="tech-tag">Algoritmos</span>
+                    <span class="tech-tag">Complejidad</span>
+                    <span class="tech-tag">POO</span>
+                </div>
+                <a href="#" download class="btn btn-primary">📄 Descargar Temario</a>
+            </article>
+
+            <!-- Card 3: Python & IA -->
+            <article class="pdf-card">
+                <div class="pdf-header">
+                    <div class="pdf-title-group">
+                        <h2>IA, Visión y Machine Learning</h2>
+                        <span>[ Documento PDF ]</span>
+                    </div>
+                </div>
+                <p class="pdf-description">Pensum técnico para la implementación de modelos de aprendizaje automático, redes neuronales, visión por computadora y algoritmos evolutivos.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Python</span>
+                    <span class="tech-tag">PyTorch / Keras</span>
+                    <span class="tech-tag">OpenCV</span>
+                    <span class="tech-tag">Scikit-learn</span>
+                    <span class="tech-tag">PyGAD</span>
+                </div>
+                <a href="#" download class="btn btn-primary">📄 Descargar Temario</a>
+            </article>
+
+            <!-- Card 4: Operaciones y Simulación -->
+            <article class="pdf-card">
+                <div class="pdf-header">
+                    <div class="pdf-title-group">
+                        <h2>Inv. de Operaciones y Simulación</h2>
+                        <span>[ Documento PDF ]</span>
+                    </div>
+                </div>
+                <p class="pdf-description">Programa enfocado en la optimización de procesos mediante la teoría de colas, modelos de inventario, simulación de eventos discretos y despliegue.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Teoría de Colas</span>
+                    <span class="tech-tag">SimPy</span>
+                    <span class="tech-tag">Modelos de Inventario</span>
+                    <span class="tech-tag">Docker</span>
+                </div>
+                <a href="#" download class="btn btn-primary">📄 Descargar Temario</a>
+            </article>
+
+            <!-- Card 5: Otros Motores -->
+            <article class="pdf-card">
+                <div class="pdf-header">
+                    <div class="pdf-title-group">
+                        <h2>Prototipado en Godot & Pygame</h2>
+                        <span>[ Documento PDF ]</span>
+                    </div>
+                </div>
+                <p class="pdf-description">Ficha técnica sobre el uso de motores alternativos y frameworks ligeros para la validación rápida de mecánicas de juego y prototipos 2D.</p>
+                <div class="tech-stack">
+                    <span class="tech-tag">Godot Engine</span>
+                    <span class="tech-tag">GDScript</span>
+                    <span class="tech-tag">Pygame</span>
+                    <span class="tech-tag">Python</span>
+                </div>
+                <a href="#" download class="btn btn-primary">📄 Descargar Temario</a>
+            </article>
+
+        </section>
+    </main>
+
+    <!-- Footer -->
+<footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
+                <p>Elevando el nivel técnico de tus proyectos. Consultoría, arquitectura de software y mentoría especializada por Argenis.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="wiki.html">Servicios (Wiki)</a></li>
+                    <li><a href="documentos.html">Temarios (PDF)</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-social">
+                <h4>Proyectos y Redes</h4>
+                <ul>
+                    <li><a href="#" target="_blank">GitHub</a></li>
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">Juega Capítulo 0 (Steam / Itch.io)</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Argenis. Desarrollado desde Venezuela. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Script de Cambio de Tema -->
+    <script>
+        const themeSelect = document.getElementById('theme-select');
+        
+        // Sincroniza con el estado guardado del index principal
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('modo-claro');
+            themeSelect.value = 'light';
+        }
+
+        themeSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'light') {
+                document.body.classList.add('modo-claro');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('modo-claro');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+    </script>
+</body>
+</html>

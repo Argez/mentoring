@@ -52,16 +52,8 @@
             --btn-text: #ffffff;
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
         body {
             background-color: var(--bg-color);
             color: var(--text-primary);
@@ -74,9 +66,7 @@
         /* Header Nav */
         header {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
+            top: 0; left: 0; width: 100%;
             background: var(--header-bg);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--border-color);
@@ -85,430 +75,202 @@
         }
 
         nav {
-            max-width: 1100px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
             padding: 1rem 1.5rem;
         }
 
         .logo {
-            font-family: var(--font-mono);
-            font-weight: 600;
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 1.1rem;
+            font-family: var(--font-mono); font-weight: 600;
+            color: var(--accent-color); text-decoration: none; font-size: 1.1rem;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            list-style: none;
-            align-items: center;
-        }
-
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
         .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.95rem; transition: color 0.2s ease;
         }
+        .nav-links a:hover { color: var(--text-primary); }
 
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        /* Select de Tema */
         .theme-select {
-            background-color: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 0.4rem 0.8rem;
-            font-family: var(--font-sans);
-            font-size: 0.85rem;
-            cursor: pointer;
-            outline: none;
+            background-color: var(--card-bg); color: var(--text-primary);
+            border: 1px solid var(--border-color); border-radius: 6px;
+            padding: 0.4rem 0.8rem; font-family: var(--font-sans);
+            font-size: 0.85rem; cursor: pointer; outline: none;
             transition: border-color 0.2s ease, background-color 0.3s ease;
         }
-
-        .theme-select:hover {
-            border-color: var(--accent-color);
-        }
-
-        .theme-select option {
-            background-color: var(--card-bg);
-            color: var(--text-primary);
-        }
+        .theme-select:hover { border-color: var(--accent-color); }
 
         /* Hero Section */
         .hero {
-            max-width: 1100px;
-            margin: 4rem auto 2rem;
-            padding: 0 1.5rem;
-            text-align: center;
+            max-width: 1100px; margin: 4rem auto 2rem; padding: 0 1.5rem; text-align: center;
         }
-
         .hero-badge {
-            display: inline-block;
-            font-family: var(--font-mono);
-            font-size: 0.85rem;
-            color: var(--accent-purple);
-            background: var(--badge-bg);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-            border: 1px solid var(--badge-border);
-            margin-bottom: 1.5rem;
+            display: inline-block; font-family: var(--font-mono); font-size: 0.85rem;
+            color: var(--accent-purple); background: var(--badge-bg);
+            padding: 0.3rem 0.8rem; border-radius: 20px;
+            border: 1px solid var(--badge-border); margin-bottom: 1.5rem;
         }
-
         .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.2rem);
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.2rem;
-            line-height: 1.2;
+            font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800;
+            letter-spacing: -0.02em; margin-bottom: 1.2rem; line-height: 1.2;
         }
-
         .hero p {
-            font-size: 1.15rem;
-            color: var(--text-secondary);
-            max-width: 780px;
-            margin: 0 auto 2.5rem;
+            font-size: 1.15rem; color: var(--text-secondary); max-width: 780px; margin: 0 auto 2.5rem;
         }
 
-        .cta-group {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
+        .cta-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
         .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
-            padding: 0.8rem 1.6rem;
-            border-radius: 6px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-size: 0.95rem;
-            cursor: pointer;
+            display: inline-flex; align-items: center; justify-content: center;
+            gap: 0.5rem; padding: 0.8rem 1.6rem; border-radius: 6px;
+            font-weight: 600; text-decoration: none; transition: all 0.2s ease;
+            font-size: 0.95rem; cursor: pointer;
         }
+        .btn-primary { background-color: var(--accent-color); color: var(--btn-text); border: none; }
+        .btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+        .btn-secondary { background-color: var(--card-bg); color: var(--text-primary); border: 1px solid var(--border-color); }
+        .btn-secondary:hover { border-color: var(--text-secondary); transform: translateY(-2px); }
 
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: var(--btn-text);
-            border: none;
-        }
-
-        .btn-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .btn-secondary {
-            background-color: var(--card-bg);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--text-secondary);
-            transform: translateY(-2px);
-        }
-
-        /* Feature Pillars */
+        /* Pillars Section */
         .pillars {
-            max-width: 1100px;
-            margin: 5rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 1.5rem;
+            max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem;
         }
-
         .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2rem;
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 2rem; display: flex; flex-direction: column; justify-content: space-between;
             transition: border-color 0.2s ease, background-color 0.3s ease;
         }
-
-        .card:hover {
-            border-color: var(--accent-color);
+        .card:hover { border-color: var(--accent-color); }
+        .card-icon { font-family: var(--font-mono); color: var(--accent-color); font-size: 1.4rem; margin-bottom: 1rem; }
+        .card h2 { font-size: 1.25rem; margin-bottom: 0.8rem; }
+        .card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1rem; }
+        .card-link {
+            font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-color);
+            text-decoration: none; font-weight: 600; margin-top: auto; display: inline-block;
         }
+        .card-link:hover { text-decoration: underline; }
 
-        .card-icon {
-            font-family: var(--font-mono);
-            color: var(--accent-color);
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-
-        .card h2 {
-            font-size: 1.25rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .card p {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-        }
-
-        /* Sección Nosotros */
+        /* About Section */
         .about-section {
-            max-width: 1100px;
-            margin: 5rem auto;
-            padding: 0 1.5rem;
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            gap: 3rem;
-            align-items: center;
+            max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem;
+            display: grid; grid-template-columns: 280px 1fr; gap: 3rem; align-items: center;
         }
-
-        .about-img-container {
-            text-align: center;
-        }
-
         .about-img {
-            width: 100%;
-            max-width: 280px;
-            height: 280px;
-            border-radius: 12px;
-            border: 2px solid var(--border-color);
-            object-fit: cover;
-            background-color: var(--card-bg);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            width: 100%; max-width: 280px; height: 280px; border-radius: 12px;
+            border: 2px solid var(--border-color); object-fit: cover; background-color: var(--card-bg);
         }
-
-        .about-content h2 {
-            font-size: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        .about-content p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 1.2rem;
-            line-height: 1.7;
-        }
+        .about-content h2 { font-size: 2rem; margin-bottom: 1rem; }
+        .about-content p { color: var(--text-secondary); font-size: 1rem; margin-bottom: 1.2rem; line-height: 1.7; }
 
         /* Tech Stack Section */
         .stack-section {
-            background-color: var(--card-bg);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-            padding: 4rem 1.5rem;
-            text-align: center;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            background-color: var(--card-bg); border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color); padding: 4rem 1.5rem; text-align: center;
         }
-
-        .stack-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            font-size: 1.8rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .section-subtitle {
-            color: var(--text-secondary);
-            margin-bottom: 2.5rem;
-        }
-
-        .tags {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-        }
-
+        .stack-container { max-width: 1100px; margin: 0 auto; }
+        .section-title { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .section-subtitle { color: var(--text-secondary); margin-bottom: 2.5rem; }
+        .tags { display: flex; justify-content: center; flex-wrap: wrap; gap: 0.8rem; }
         .tag {
-            font-family: var(--font-mono);
-            font-size: 0.9rem;
-            background-color: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 0.4rem 1rem;
-            border-radius: 20px;
-            color: var(--text-primary);
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            font-family: var(--font-mono); font-size: 0.9rem; background-color: var(--bg-color);
+            border: 1px solid var(--border-color); padding: 0.4rem 1rem; border-radius: 20px; color: var(--text-primary);
         }
 
-        /* Modality Section */
-        .modality-section {
-            max-width: 1100px;
-            margin: 5rem auto;
-            padding: 0 1.5rem;
-        }
+        /* Modalidad Section */
+        .modality-section { max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem; }
 
-        /* Two-Column Layout: Downloads & Pricing */
-        .two-col-container {
-            max-width: 1100px;
-            margin: 5rem auto;
-            padding: 0 1.5rem;
-        }
-
-        .two-col-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-
+        /* Two Column Grid */
+        .two-col-container { max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem; }
+        .two-col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2.5rem; }
         .col-card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 2.5rem; display: flex; flex-direction: column; justify-content: space-between;
         }
-
         .col-card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.8rem;
-            color: var(--text-primary);
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 0.8rem;
+            font-size: 1.4rem; margin-bottom: 0.8rem; color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color); padding-bottom: 0.8rem;
         }
+        .col-card p.description { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .btn-stack { display: flex; flex-direction: column; gap: 0.8rem; }
+        .btn-stack .btn { width: 100%; text-align: center; }
 
-        .col-card p.description {
-            color: var(--text-secondary);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-        }
+        /* Pricing List */
+        .price-list { list-style: none; display: flex; flex-direction: column; gap: 1.2rem; margin-bottom: 1.5rem; }
+        .price-item { display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.8rem; border-bottom: 1px dashed var(--border-color); }
+        .price-title { font-weight: 600; font-size: 0.95rem; }
+        .price-desc { font-size: 0.85rem; color: var(--text-secondary); display: block; }
+        .price-tag { font-family: var(--font-mono); color: var(--accent-green); font-weight: 600; font-size: 1.05rem; white-space: nowrap; }
 
-        /* Vertical stack for PDF buttons */
-        .btn-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
+        /* Workflow Section */
+        .workflow-section { max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem; }
+        .nodes-wrapper { position: relative; display: flex; justify-content: space-between; margin-top: 3.5rem; gap: 1rem; }
+        .nodes-wrapper::before {
+            content: ''; position: absolute; top: 25px; left: 0; width: 100%; height: 2px;
+            background-color: var(--border-color); z-index: 0;
         }
-
-        .btn-stack .btn {
-            width: 100%;
-            text-align: center;
+        .node-item { position: relative; z-index: 1; flex: 1; text-align: center; padding: 0 1rem; }
+        .node-circle {
+            width: 50px; height: 50px; border-radius: 50%; background-color: var(--bg-color);
+            border: 2px solid var(--accent-color); color: var(--accent-color);
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-mono); font-size: 1.2rem; font-weight: bold; margin: 0 auto 1.2rem;
         }
-
-        /* Pricing Itemized Table/List */
-        .price-list {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 1.2rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 0.8rem;
-            border-bottom: 1px dashed var(--border-color);
-        }
-
-        .price-item:last-child {
-            border-bottom: none;
-        }
-
-        .price-title {
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .price-desc {
-            font-size: 0.85rem;
-            color: var(--text-secondary);
-            display: block;
-        }
-
-        .price-tag {
-            font-family: var(--font-mono);
-            color: var(--accent-green);
-            font-weight: 600;
-            font-size: 1.05rem;
-            white-space: nowrap;
-        }
+        .node-content h4 { font-size: 1.1rem; margin-bottom: 0.5rem; color: var(--text-primary); }
+        .node-content p { font-size: 0.9rem; color: var(--text-secondary); line-height: 1.5; }
 
         /* Contact Section */
-        .contact-section {
-            max-width: 1100px;
-            margin: 5rem auto;
-            padding: 0 1.5rem;
-            text-align: center;
-        }
-
+        .contact-section { max-width: 1100px; margin: 5rem auto; padding: 0 1.5rem; text-align: center; }
         .contact-box {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 3rem 2rem;
-            max-width: 700px;
-            margin: 2rem auto 0;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 3rem 2rem; max-width: 700px; margin: 2rem auto 0;
         }
+        .contact-info { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; font-family: var(--font-mono); font-size: 1rem; }
+        .contact-item a { color: var(--accent-color); text-decoration: none; }
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-top: 1.5rem;
-            font-family: var(--font-mono);
-            font-size: 1rem;
-        }
-
-        .contact-item a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        .contact-item a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
+        /* Footer Multicolumna */
         footer {
-            border-top: 1px solid var(--border-color);
-            padding: 2rem 1.5rem;
-            text-align: center;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-            margin-top: 4rem;
-            transition: border-color 0.3s ease;
+            background-color: var(--card-bg); border-top: 1px solid var(--border-color);
+            padding: 4rem 1.5rem 2rem; margin-top: 6rem;
+        }
+        .footer-container { max-width: 1100px; margin: 0 auto; }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1.5fr 1.5fr; gap: 2.5rem; margin-bottom: 3rem; }
+        .footer-col h4 { font-size: 1rem; margin-bottom: 1.2rem; color: var(--text-primary); font-family: var(--font-mono); }
+        .footer-col p { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; }
+        .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+        .footer-links a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; transition: color 0.2s ease; }
+        .footer-links a:hover { color: var(--accent-color); }
+        .footer-badge {
+            display: inline-block; font-family: var(--font-mono); font-size: 0.75rem;
+            color: var(--accent-green); background: rgba(46, 160, 67, 0.1);
+            padding: 0.15rem 0.5rem; border-radius: 4px; border: 1px solid rgba(46, 160, 67, 0.2); margin-left: 0.4rem;
+        }
+        .footer-bottom {
+            border-top: 1px solid var(--border-color); padding-top: 2rem;
+            display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+            color: var(--text-secondary); font-size: 0.85rem;
         }
 
-        /* Responsive Layout */
         @media (max-width: 850px) {
-            .two-col-grid {
-                grid-template-columns: 1fr;
-            }
-            .about-section {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-            .about-img-container {
-                margin: 0 auto;
-            }
+            .two-col-grid { grid-template-columns: 1fr; }
+            .about-section { grid-template-columns: 1fr; text-align: center; }
+            .nodes-wrapper { flex-direction: column; gap: 2rem; }
+            .nodes-wrapper::before { width: 2px; height: 100%; left: 25px; top: 0; }
+            .node-item { display: flex; text-align: left; align-items: flex-start; gap: 1.5rem; padding: 0; }
+            .node-circle { margin: 0; flex-shrink: 0; }
+            .footer-grid { grid-template-columns: 1fr 1fr; }
         }
 
-        @media (max-width: 600px) {
-            .nav-links {
-                display: none;
-            }
+        @media (max-width: 550px) {
+            .nav-links { display: none; }
+            .footer-grid { grid-template-columns: 1fr; }
+            .footer-bottom { flex-direction: column; text-align: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Header / Nav -->
+    <!-- Header Nav (Limpio y sin saturar) -->
     <header>
         <nav>
             <a href="#" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
@@ -517,9 +279,10 @@
                 <li><a href="#servicios">Servicios</a></li>
                 <li><a href="#modalidades">Modalidades</a></li>
                 <li><a href="#documentos">Catálogo y Precios</a></li>
+                <li><a href="wiki.html">Wiki</a></li>
+                <li><a href="#proceso">Proceso</a></li>
                 <li><a href="#contacto">Contacto</a></li>
                 <li>
-                    <!-- Select Integrado -->
                     <select id="theme-select" class="theme-select">
                         <option value="dark">Oscuro</option>
                         <option value="light">Claro</option>
@@ -529,7 +292,6 @@
         </nav>
     </header>
 
-    <!-- Main Content -->
     <main>
         <!-- Hero Section -->
         <section class="hero">
@@ -539,13 +301,14 @@
             
             <div class="cta-group">
                 <a href="#documentos" class="btn btn-primary">Ver Catálogo &amp; Precios</a>
+                <a href="wiki.html" class="btn btn-secondary">Wiki de Servicios</a>
                 <a href="#contacto" class="btn btn-secondary">Contactar</a>
             </div>
         </section>
 
         <!-- Section: Nosotros -->
         <section class="about-section" id="nosotros">
-            <div class="about-img-container">
+            <div class="about-img-container" style="text-align: center;">
                 <img src="perfil.jpg" alt="Foto de perfil profesional" class="about-img">
             </div>
             <div class="about-content">
@@ -558,27 +321,37 @@
         <!-- Pillars / Services Section -->
         <section class="pillars" id="servicios">
             <article class="card">
-                <div class="card-icon">[01]</div>
-                <h2>Code Review &amp; Auditoría</h2>
-                <p>Orientado a programadores e indie devs. Análisis profundo de proyectos en Unity/C#, detección de bottlenecks, optimización 2D/3D y buenas prácticas de arquitectura (Behavior Trees, Clean Code).</p>
+                <div>
+                    <div class="card-icon">[01]</div>
+                    <h2>Code Review &amp; Auditoría</h2>
+                    <p>Orientado a programadores e indie devs. Análisis profundo de proyectos en Unity/C#, detección de bottlenecks, optimización 2D/3D y buenas prácticas de arquitectura (Behavior Trees, Clean Code).</p>
+                </div>
+                <!-- ENLACE ESTRATÉGICO A GAMEDEV -->
+                <a href="gamedev.html" class="card-link">Ver especialidad Unity &amp; GameDev →</a>
             </article>
 
             <article class="card">
-                <div class="card-icon">[02]</div>
-                <h2>Mentoría 1 a 1</h2>
-                <p>Sesiones personalizadas para programadores y estudiantes universitarios. Dominio de Estructuras de Datos, Análisis de Algoritmos y Patrones de Diseño Orientados a Objetos.</p>
+                <div>
+                    <div class="card-icon">[02]</div>
+                    <h2>Mentoría 1 a 1</h2>
+                    <p>Sesiones personalizadas para programadores y estudiantes universitarios. Dominio de Estructuras de Datos, Análisis de Algoritmos y Patrones de Diseño Orientados a Objetos.</p>
+                </div>
             </article>
 
             <article class="card">
-                <div class="card-icon">[03]</div>
-                <h2>Consultoría para Empresas</h2>
-                <p>Soluciones para pequeñas empresas y startups. Desarrollo de scripts en Python, automatización de flujos de datos, web scraping avanzado y estructuración técnica de proyectos.</p>
+                <div>
+                    <div class="card-icon">[03]</div>
+                    <h2>Consultoría para Empresas</h2>
+                    <p>Soluciones para pequeñas empresas y startups. Desarrollo de scripts en Python, automatización de flujos de datos, web scraping avanzado y estructuración técnica de proyectos.</p>
+                </div>
             </article>
 
             <article class="card">
-                <div class="card-icon">[04]</div>
-                <h2>Mentoría Grupal</h2>
-                <p>Capacitación técnica para pequeños equipos de trabajo o grupos académicos. Resolución colaborativa de problemas lógicos y estandarización de criterios de software.</p>
+                <div>
+                    <div class="card-icon">[04]</div>
+                    <h2>Mentoría Grupal</h2>
+                    <p>Capacitación técnica para pequeños equipos de trabajo o grupos académicos. Resolución colaborativa de problemas lógicos y estandarización de criterios de software.</p>
+                </div>
             </article>
         </section>
 
@@ -599,7 +372,7 @@
             </div>
         </section>
 
-        <!-- Nueva Sección: Modalidades de Atención -->
+        <!-- Modalidades -->
         <section class="modality-section" id="modalidades">
             <h2 class="section-title" style="text-align: center;">Modalidad de Atención</h2>
             <p class="section-subtitle" style="text-align: center;">Flexibilidad para adaptarme a tu ubicación, ritmo de trabajo o dinámica de equipo.</p>
@@ -627,28 +400,28 @@
             </div>
         </section>
 
-        <!-- Section: Catálogo General y Precios (2 Columnas) -->
+        <!-- Catálogo y Precios -->
         <section class="two-col-container" id="documentos">
             <h2 class="section-title" style="text-align: center;">Documentación y Tarifas</h2>
             <p class="section-subtitle" style="text-align: center;">Descarga las fichas informativas detalladas o consulta la estructura de inversión según tu perfil.</p>
 
             <div class="two-col-grid">
-                <!-- Columna 1: Catálogo General y Fichas -->
                 <div class="col-card">
                     <div>
                         <h3>Catálogo General y Fichas</h3>
-                        <p class="description">Documentos técnicos en PDF con el desglose de contenidos, metodologías de trabajo y alcance para desarrolladores y empresas.</p>
+                        <p class="description">Documentos técnicos en PDF y páginas especializadas por área tecnológica para desarrolladores y empresas.</p>
                         
                         <div class="btn-stack">
-                            <a href="https://drive.google.com/file/d/1vsCAX3v1q_d2WXgp9ayqdXkMtJHY60KZ/view?usp=sharing" download class="btn btn-primary">Descargar Catálogo General (PDF)</a>
-                            <a href="https://drive.google.com/file/d/15tqroLZ4_QOP8B_IKFep4nleWOsQcdmB/view?usp=sharingf" download class="btn btn-secondary">Ficha: Unity &amp; C# (PDF)</a>
-                            <a href="https://drive.google.com/file/d/1kd5oscjE5IkCcFalxhyyyZeGRdUEPb65/view?usp=sharing" download class="btn btn-secondary">Ficha: Desarrollo &amp; Py (PDF)</a>
-                            <a href="https://drive.google.com/file/d/1dFPXfccNHVgQpzBkzmlyD0tGHupCuhMG/view?usp=sharing" download class="btn btn-secondary">Ficha: Mentoría Universitaria (PDF)</a>
+                            <!-- ENLACE ESTRATÉGICO DESTACADO -->
+                            <a href="gamedev.html" class="btn btn-primary">Unity &amp; GameDev</a>
+                            <a href="https://drive.google.com/file/d/1vsCAX3v1q_d2WXgp9ayqdXkMtJHY60KZ/view?usp=sharing" target="_blank" class="btn btn-secondary">Descargar Catálogo General (PDF)</a>
+                            <a href="https://drive.google.com/file/d/15tqroLZ4_QOP8B_IKFep4nleWOsQcdmB/view?usp=sharingf" target="_blank" class="btn btn-secondary">Ficha: Unity &amp; C# (PDF)</a>
+                            <a href="https://drive.google.com/file/d/1kd5oscjE5IkCcFalxhyyyZeGRdUEPb65/view?usp=sharing" target="_blank" class="btn btn-secondary">Ficha: Desarrollo &amp; Py (PDF)</a>
+                            <a href="https://drive.google.com/file/d/1dFPXfccNHVgQpzBkzmlyD0tGHupCuhMG/view?usp=sharing" target="_blank" class="btn btn-secondary">Ficha: Mentoría Universitaria (PDF)</a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Columna 2: Precios y Planes -->
                 <div class="col-card">
                     <div>
                         <h3>Estructura de Precios</h3>
@@ -683,13 +456,6 @@
                                 </div>
                                 <span class="price-tag">$5 / pers. hora</span>
                             </li>
-                            <li class="price-item">
-                                <div>
-                                    <span class="price-title">Personalizado</span>
-                                    <span class="price-desc">Sesiones prácticas de desarrollo (Máx. 4)</span>
-                                </div>
-                                <span class="price-tag">Preguntar</span>
-                            </li>
                         </ul>
                     </div>
                     <a href="#contacto" class="btn btn-primary" style="margin-top: 1rem;">Solicitar Cotización Personalizada</a>
@@ -697,7 +463,47 @@
             </div>
         </section>
 
-        <!-- Section: Contacto -->
+        <!-- Proceso de trabajo -->
+        <section class="workflow-section" id="proceso">
+            <h2 class="section-title" style="text-align: center;">¿Cómo solicitar el servicio?</h2>
+            <p class="section-subtitle" style="text-align: center;">Un proceso directo y sin burocracia para iniciar nuestra colaboración.</p>
+
+            <div class="nodes-wrapper">
+                <div class="node-item">
+                    <div class="node-circle">01</div>
+                    <div class="node-content">
+                        <h4>Contacto</h4>
+                        <p>Escríbeme por WhatsApp o correo detallando tu proyecto, el código a auditar o el tema a estudiar.</p>
+                    </div>
+                </div>
+
+                <div class="node-item">
+                    <div class="node-circle">02</div>
+                    <div class="node-content">
+                        <h4>Evaluación</h4>
+                        <p>Analizo tus requerimientos para definir el alcance, las tecnologías involucradas y las horas necesarias.</p>
+                    </div>
+                </div>
+
+                <div class="node-item">
+                    <div class="node-circle">03</div>
+                    <div class="node-content">
+                        <h4>Propuesta</h4>
+                        <p>Recibes una ruta de trabajo o estudio, el cronograma y la cotización adaptada a tu modalidad.</p>
+                    </div>
+                </div>
+
+                <div class="node-item">
+                    <div class="node-circle">04</div>
+                    <div class="node-content">
+                        <h4>Ejecución</h4>
+                        <p>Iniciamos el desarrollo del código, la auditoría o la primera sesión de mentoría programada.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contacto -->
         <section class="contact-section" id="contacto">
             <h2 class="section-title">Contacto Directo</h2>
             <p class="section-subtitle">¿Eres un programador buscando acelerar tu nivel técnico o una pequeña empresa con un desafío de software?</p>
@@ -707,34 +513,82 @@
                 <div class="contact-info">
                     <div class="contact-item">
                         <span>Email: </span>
-                        <a href="mailto:rodarge32@gmail.com">mailto:rodarge32@gmail.com</a>
+                        <a href="mailto:rodarge32@gmail.com">rodarge32@gmail.com</a>
                     </div>
                     <div class="contact-item">
                         <span>Whatsapp: </span>
-                        <a href="https://wa.link/a9d5ua" target="_blank" rel="noopener">+584244036571</a>
+                        <a href="https://wa.link/a9d5ua" target="_blank" rel="noopener">+58 424 403 6571</a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <!-- Footer -->
+    <!-- Footer Multicolumna -->
     <footer>
-        <p>&copy; 2026 Servicios de Consultoría Técnica e Ingeniería de Software. Todos los derechos reservados.</p>
+        <div class="footer-container">
+            <div class="footer-grid">
+                <!-- Columna 1 -->
+                <div class="footer-col">
+                    <h4>&lt;Ingeniería &amp; Mentoría /&gt;</h4>
+                    <p>Consultoría de software, auditoría de código C#/Unity y mentoría técnica especializada para desarrolladores independientes, startups y proyectos académicos.</p>
+                </div>
+
+                <!-- Columna 2 -->
+                <div class="footer-col">
+                    <h4>Navegación</h4>
+                    <ul class="footer-links">
+                        <li><a href="#nosotros">Sobre Mí</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#modalidades">Modalidades</a></li>
+                        <li><a href="#documentos">Precios &amp; Fichas</a></li>
+                        <li><a href="#proceso">Proceso de Trabajo</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 3: Recursos, Wiki & Enlaces Internos -->
+                <div class="footer-col">
+                    <h4>Recursos &amp; Wiki</h4>
+                    <ul class="footer-links">
+                        <li><a href="wiki.html">Wiki de Servicios <span class="footer-badge">Documentación</span></a></li>
+                        <!-- ENLACE ESTRATÉGICO EN FOOTER -->
+                        <li><a href="gamedev.html">Mentoría Unity &amp; GameDev <span class="footer-badge">Especialidad</span></a></li>
+                        <li><a href="https://drive.google.com/file/d/1vsCAX3v1q_d2WXgp9ayqdXkMtJHY60KZ/view?usp=sharing" target="_blank">Catálogo General (PDF)</a></li>
+                        <li><a href="https://drive.google.com/file/d/15tqroLZ4_QOP8B_IKFep4nleWOsQcdmB/view?usp=sharingf" target="_blank">Ficha Unity &amp; C#</a></li>
+                        <li><a href="https://drive.google.com/file/d/1kd5oscjE5IkCcFalxhyyyZeGRdUEPb65/view?usp=sharing" target="_blank">Ficha Python &amp; Scraping</a></li>
+                        <li><a href="https://drive.google.com/file/d/1dFPXfccNHVgQpzBkzmlyD0tGHupCuhMG/view?usp=sharing" target="_blank">Ficha Mentoría Algoritmia</a></li>
+                    </ul>
+                </div>
+
+                <!-- Columna 4 -->
+                <div class="footer-col">
+                    <h4>Contacto</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:rodarge32@gmail.com">rodarge32@gmail.com</a></li>
+                        <li><a href="https://wa.link/a9d5ua" target="_blank" rel="noopener">+58 424 403 6571</a></li>
+                        <li><a href="#modalidades">Atención Virtual &amp; Presencial</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Footer Bottom Bar -->
+            <div class="footer-bottom">
+                <p>&copy; 2026 Servicios de Consultoría Técnica e Ingeniería de Software. Todos los derechos reservados.</p>
+                <p>Diseñado para desarrolladores y pequeñas empresas.</p>
+            </div>
+        </div>
     </footer>
 
     <!-- Script de Cambio de Tema -->
     <script>
         const themeSelect = document.getElementById('theme-select');
         
-        // Verifica si hay un tema guardado en localStorage al cargar la página
         const savedTheme = localStorage.getItem('theme') || 'dark';
         if (savedTheme === 'light') {
             document.body.classList.add('modo-claro');
             themeSelect.value = 'light';
         }
 
-        // Evento para cambiar de tema usando el select
         themeSelect.addEventListener('change', (e) => {
             if (e.target.value === 'light') {
                 document.body.classList.add('modo-claro');

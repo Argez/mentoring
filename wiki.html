@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios y Alcance | Ingeniería & Mentoría</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --card-bg: #161b22;
+            --border-color: #30363d;
+            --text-primary: #f0f6fc;
+            --text-secondary: #8b949e;
+            --accent-color: #58a6ff;
+            --accent-green: #2ea043;
+            --accent-purple: #bc8cff;
+            --header-bg: rgba(13, 17, 23, 0.85);
+            --btn-text: #0d1117;
+            
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'Fira Code', monospace;
+        }
+
+        body.modo-claro {
+            --bg-color: #fcfbf9; 
+            --card-bg: #ffffff; 
+            --border-color: #e6dfd3; 
+            --text-primary: #26231f; 
+            --text-secondary: #665f54; 
+            --accent-color: #d4af37; 
+            --accent-green: #8a6d3b; 
+            --accent-purple: #c5a059; 
+            --header-bg: rgba(252, 251, 249, 0.85);
+            --btn-text: #ffffff;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: var(--font-sans);
+            line-height: 1.6;
+            padding-top: 70px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            background: var(--header-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        nav {
+            max-width: 1100px; margin: 0 auto;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .logo {
+            font-family: var(--font-mono); font-weight: 600;
+            color: var(--accent-color); text-decoration: none; font-size: 1.1rem;
+        }
+
+        .nav-links { display: flex; gap: 1.5rem; list-style: none; align-items: center; }
+        .nav-links a {
+            color: var(--text-secondary); text-decoration: none;
+            font-size: 0.95rem; transition: color 0.2s ease;
+        }
+        .nav-links a:hover { color: var(--text-primary); }
+
+        .theme-select {
+            background-color: var(--card-bg); color: var(--text-primary);
+            border: 1px solid var(--border-color); border-radius: 6px;
+            padding: 0.4rem 0.8rem; font-family: var(--font-sans);
+            font-size: 0.85rem; cursor: pointer; outline: none;
+            transition: border-color 0.2s ease, background-color 0.3s ease;
+        }
+        .theme-select:hover { border-color: var(--accent-color); }
+
+        .wiki-layout {
+            max-width: 1200px; margin: 3rem auto 5rem; padding: 0 1.5rem;
+            display: grid; grid-template-columns: 260px 1fr; gap: 3rem; align-items: start;
+        }
+
+        .wiki-sidebar {
+            background-color: var(--card-bg); border: 1px solid var(--border-color);
+            border-radius: 8px; padding: 1.5rem; position: sticky; top: 100px; 
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .wiki-sidebar h3 {
+            font-size: 1.1rem; margin-bottom: 1.2rem; color: var(--text-primary);
+            border-bottom: 1px solid var(--border-color); padding-bottom: 0.5rem;
+        }
+
+        .wiki-nav { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+        .wiki-nav li a {
+            text-decoration: none; color: var(--text-secondary); font-size: 0.95rem;
+            transition: color 0.2s ease, padding-left 0.2s ease; display: block;
+        }
+        .wiki-nav li a:hover, .wiki-nav li a.active {
+            color: var(--accent-color); font-weight: 600; padding-left: 5px;
+        }
+
+        .wiki-content { min-width: 0; }
+        .wiki-header { margin-bottom: 2.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1.5rem; }
+        .wiki-header h1 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 0.5rem; line-height: 1.2; }
+        .wiki-header p { color: var(--text-secondary); font-size: 1.1rem; }
+        
+        .wiki-content h2 { font-size: 1.6rem; margin: 2.5rem 0 1rem; color: var(--text-primary); }
+        .wiki-content h3 { font-size: 1.2rem; margin: 1.5rem 0 0.8rem; color: var(--accent-color); }
+        .wiki-content p { color: var(--text-secondary); margin-bottom: 1.2rem; line-height: 1.7; }
+        
+        .wiki-content ul { margin-left: 1.5rem; margin-bottom: 1.5rem; color: var(--text-secondary); }
+        .wiki-content li { margin-bottom: 0.6rem; }
+        .wiki-content strong { color: var(--text-primary); }
+
+        .highlight-box {
+            background-color: rgba(88, 166, 255, 0.05);
+            border-left: 4px solid var(--accent-color);
+            padding: 1.2rem; margin: 1.5rem 0; border-radius: 0 8px 8px 0;
+            color: var(--text-secondary); font-style: italic;
+        }
+
+        footer {
+            border-top: 1px solid var(--border-color); padding: 2rem 1.5rem; text-align: center;
+            color: var(--text-secondary); font-size: 0.85rem; margin-top: 4rem;
+        }
+
+        @media (max-width: 900px) {
+            .wiki-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .wiki-sidebar { position: static; border-left: 4px solid var(--accent-color); }
+        }
+        @media (max-width: 600px) { .nav-links { display: none; } }
+
+        /* Estilos del Footer Principal */
+        .main-footer {
+            background-color: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 4rem 1.5rem 1.5rem;
+            margin-top: 5rem;
+            font-family: var(--font-sans);
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-top: 1rem;
+            max-width: 380px;
+            line-height: 1.5;
+        }
+
+        .footer-links h4, .footer-social h4 {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            margin-bottom: 1.2rem;
+            font-weight: 600;
+        }
+
+        .footer-links ul, .footer-social ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-links a, .footer-social a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover, .footer-social a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+            padding-top: 1.5rem;
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+
+        /* Responsividad para el Footer */
+        @media (max-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr;
+                text-align: left;
+                gap: 2.5rem;
+            }
+            .footer-brand p {
+                margin: 1rem 0 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="index.html" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Volver al Inicio</a></li>
+                <li>
+                    <select id="theme-select" class="theme-select">
+                        <option value="dark">Oscuro</option>
+                        <option value="light">Claro</option>
+                    </select>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="wiki-layout">
+        
+        <aside class="wiki-sidebar">
+            <h3>Navegación</h3>
+            <ul class="wiki-nav">
+                <li><a href="#intro" class="active">Introducción</a></li>
+                <li><a href="#consultoria-ti">Consultoría TI</a></li>
+                <li><a href="#mentoria-1a1">Mentoría 1 a 1</a></li>
+                <li><a href="#capacitacion-grupal">Capacitación Grupal</a></li>
+                <li><a href="#asesoria-negocios">Asesoría para Negocios</a></li>
+                <li><a href="#valor-diferencial">El Valor Diferencial</a></li>
+            </ul>
+        </aside>
+
+        <section class="wiki-content">
+            
+            <div class="wiki-header" id="intro">
+                <h1>Servicios Profesionales</h1>
+                <p>Guía detallada sobre la propuesta de valor, enfoques de trabajo y el impacto real de la consultoría técnica y la mentoría especializada en tus proyectos.</p>
+            </div>
+
+            <h2 id="consultoria-ti">Consultoría TI: Ingeniería y Arquitectura</h2>
+            <p>La Consultoría en Tecnologías de la Información (TI) no es un simple servicio de soporte; es un diagnóstico y estructuración profunda de tus sistemas. Consiste en evaluar el estado actual de un proyecto de software, identificar cuellos de botella (bottlenecks), fallos de rendimiento o problemas de escalabilidad, y trazar una ruta de acción técnica precisa para resolverlos.</p>
+
+            <h3>Importancia Estratégica</h3>
+            <p>Implementar soluciones sin una base arquitectónica sólida suele derivar en el temido "código espagueti". La consultoría TI es crucial porque <strong>reduce los costos a largo plazo</strong>. Previene bloqueos en etapas avanzadas del desarrollo, asegura que el producto pueda escalar y permite que futuros desarrolladores se integren al equipo de manera ágil y sin fricciones.</p>
+
+            <h2 id="mentoria-1a1">Mentoría 1 a 1: Acelerador de Talento</h2>
+            <p>La Mentoría 1 a 1 es un acompañamiento técnico intensivo y totalmente personalizado. A diferencia de un curso pregrabado, las sesiones se adaptan al ritmo, las debilidades y los objetivos específicos del desarrollador mediante programación en pareja (Pair Programming) y revisión en tiempo real.</p>
+
+            <h3>¿A quién va dirigido?</h3>
+            <ul>
+                <li><strong>Estudiantes de Ingeniería y Ciencias de la Computación:</strong> Que necesitan dominar Estructuras de Datos complejas, Análisis de Complejidad (Big-O) o POO para superar barreras académicas.</li>
+                <li><strong>Programadores Independientes (Indie Devs):</strong> Que están desarrollando su propio videojuego y se encuentran atascados en la implementación de mecánicas de control, físicas o inteligencia artificial de enemigos.</li>
+                <li><strong>Desarrolladores Junior / Mid:</strong> Que buscan dar el salto profesional refinando su arquitectura de software y entendiendo patrones de diseño avanzados.</li>
+            </ul>
+
+            <div class="highlight-box">
+                "La mentoría ahorra cientos de horas de frustración al traducir la teoría abstracta en soluciones de código aplicables e inmediatas para tu proyecto."
+            </div>
+
+            <h2 id="capacitacion-grupal">Capacitación y Mentoría Grupal</h2>
+            <p>La capacitación técnica grupal traslada el rigor académico y la experiencia de campo a un entorno de equipo. Se trata de talleres prácticos y sesiones de resolución colaborativa de problemas diseñados para alinear técnicamente a un departamento entero.</p>
+
+            <h3>¿Para qué sirve?</h3>
+            <p>El objetivo principal es la <strong>estandarización del conocimiento</strong>. En muchos equipos, cada programador escribe código con un estilo diferente, lo que dificulta la integración y el mantenimiento. La capacitación unifica criterios, establece flujos de trabajo estandarizados (como metodologías de control de versiones) y eleva el nivel técnico global del equipo frente a nuevas tecnologías o lenguajes (como la transición a C# o la adopción de Python para backend).</p>
+
+            <h3>¿A quién va dirigido?</h3>
+            <ul>
+                <li><strong>Pequeñas Empresas y Pymes:</strong> Que desean digitalizar procesos y necesitan capacitar a su personal interno en la creación y mantenimiento de scripts y automatizaciones.</li>
+                <li><strong>Pequeños Estudios de Videojuegos o Startups:</strong> Equipos de 2 a 5 personas que requieren definir una arquitectura limpia (Clean Architecture) antes de escalar la producción de su software o juego.</li>
+            </ul>
+
+            <h2 id="asesoria-negocios">Asesoría Estratégica para Negocios y Emprendedores</h2>
+            <p>Muchos emprendedores tienen ideas de negocio brillantes, pero carecen del bagaje técnico para ejecutarlas correctamente. Este servicio actúa como tu <strong>Director de Tecnología (CTO) bajo demanda</strong>, brindando acompañamiento integral desde la concepción de la idea hasta la formación del equipo de desarrollo, evitando que malgastes tiempo y presupuesto en direcciones incorrectas.</p>
+
+            <h3>Áreas de intervención clave:</h3>
+            <ul>
+                <li><strong>Levantamiento de Requerimientos y Funcionalidades:</strong> Traducimos tu visión de negocio en un documento de especificaciones técnicas claras. Te ayudamos a priorizar qué funcionalidades son estrictamente necesarias para salir al mercado (Producto Mínimo Viable o MVP) y cuáles deben quedar para futuras iteraciones.</li>
+                <li><strong>Evaluación de Factibilidad Técnica:</strong> Realizamos un choque con la realidad. Evaluamos si lo que tienes en mente es tecnológicamente posible dentro de tus plazos y presupuesto, identificando riesgos potenciales antes de escribir la primera línea de código.</li>
+                <li><strong>Selección del Stack Tecnológico:</strong> ¿Necesitas una App Móvil nativa, una web progresiva (PWA) o software de escritorio? Seleccionamos las tecnologías y lenguajes más adecuados para garantizar que tu plataforma sea escalable, segura y mantenible a largo plazo.</li>
+                <li><strong>Búsqueda, Evaluación y Selección de Programadores:</strong> Contratar talento técnico es uno de los mayores desafíos si no hablas "su idioma". Nos encargamos de auditar a los candidatos, realizar pruebas de código (technical screenings) y filtrar a los desarrolladores ideales para conformar tu equipo de trabajo, asegurando que tengan las competencias reales que tu proyecto exige.</li>
+            </ul>
+
+            <h2 id="valor-diferencial">¿Por qué elegir estos servicios? (El Valor Diferencial)</h2>
+            <p>La combinación de <strong>experiencia docente universitaria</strong> y el <strong>desarrollo activo de software complejo</strong> (como arquitecturas de motores de videojuegos y modelos algorítmicos) garantiza un enfoque único. No solo se entrega código funcional, sino que se explica el "porqué" detrás de cada decisión técnica.</p>
+            <p>Invertir en consultoría o mentoría significa dejar de apagar incendios diarios en el código para empezar a construir software robusto, predecible y profesional. Es la garantía de contar con la dirección técnica necesaria para llevar tu visión o la de tu empresa a la realidad sin comprometer el rendimiento ni la calidad.</p>
+
+        </section>
+    </main>
+
+<footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <a href="index.html" class="logo">&lt;Ingeniería &amp; Mentoría /&gt;</a>
+                <p>Elevando el nivel técnico de tus proyectos. Consultoría, arquitectura de software y mentoría especializada por Argenis.</p>
+            </div>
+            
+            <div class="footer-links">
+                <h4>Navegación</h4>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="wiki.html">Servicios (Wiki)</a></li>
+                    <li><a href="documentos.html">Temarios (PDF)</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-social">
+                <h4>Proyectos y Redes</h4>
+                <ul>
+                    <li><a href="#" target="_blank">GitHub</a></li>
+                    <li><a href="#" target="_blank">LinkedIn</a></li>
+                    <li><a href="#" target="_blank">Juega Capítulo 0 (Steam / Itch.io)</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 Argenis. Desarrollado desde Venezuela. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const themeSelect = document.getElementById('theme-select');
+        
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        if (savedTheme === 'light') {
+            document.body.classList.add('modo-claro');
+            themeSelect.value = 'light';
+        }
+
+        themeSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'light') {
+                document.body.classList.add('modo-claro');
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.body.classList.remove('modo-claro');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        const navLinks = document.querySelectorAll('.wiki-nav a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                navLinks.forEach(l => l.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
